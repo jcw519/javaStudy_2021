@@ -12,7 +12,7 @@ public class Person {
         //this.name = "이름없음"
         //this.age = 1;
         
-        this("이름없음",1);
+        this("이름없음",1); //this()는 클래스 내에서 생성자가 다른 생성자를 호출할 때 사용하는 코드
     }
     
     public Person(String name, int age) {
