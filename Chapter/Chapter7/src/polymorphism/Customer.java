@@ -1,4 +1,4 @@
-package inheritance;
+package polymorphism;
 
 public class Customer {
     

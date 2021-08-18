@@ -61,5 +61,23 @@ public class CustomerTest {
         
         
         
+        /*형 변환과 오버라이딩 메서드 호출*/
+        /*
+        자바에서는 타입과 상관없이 항상 인스턴스의 메서드가 호출됨
+        아래의 경우 VIPCustomer의 메서드가 호출된다.
+        */
+        Customer customerPark = new VIPCustomer(10040, "박지성");
+        System.out.println(customerPark.calcPrice(10000));
+        System.out.println(customerPark.showCustomerInfo());
+        
+        /*
+        메서드는 이름 그자체로 주소를 가리킴
+        재정의된 메서드는 같은 이름이지만다른 메서드 주소를 가리키게 된다.
+        */
+        
+        
+        
+        
+        
     }
 }
