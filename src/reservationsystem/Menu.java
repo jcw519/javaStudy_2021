@@ -34,36 +34,34 @@ public class Menu {
         String seatSubscriber;
         int seatNumber;
         
-        System.out.print("좌석구분 :");
-        for(int i = 0; i < seatGradeList.size(); i++){
-            System.out.print(seatGradeList.get(i)[0].getSeatGrade() + "(" + (i+1) + ")  ");
-        }
-        System.out.print(">>");
-        System.out.println();
-         
-        seatGradeIndex = scanner.nextInt() - 1;
-        System.out.print(seatGradeList.get(seatGradeIndex)[0].getSeatGrade()+">> ");
-        for(int i = 0; i < seatGradeList.get(seatGradeIndex).length; i++){
-            if(seatGradeList.get(seatGradeIndex)[i].getSeatSubscriber() == null){
-                System.out.print("--- ");
+        while(true) {
+            System.out.print("좌석구분 :");
+            for(int i = 0; i < seatGradeList.size(); i++){
+                System.out.print(seatGradeList.get(i)[0].getSeatGrade() + "(" + (i+1) + ")  ");
+            }
+            System.out.print(">>");
+        
+        
+        
+            seatGradeIndex = scanner.nextInt() - 1;
+            showSeatList(seatGradeIndex, seatGradeList);
+
+
+            scanner.nextLine();        
+            System.out.print("이름>> ");
+            seatSubscriber = scanner.nextLine();
+
+            System.out.print("좌석번호>> ");     
+            seatNumber = scanner.nextInt() - 1;
+
+            if(seatGradeList.get(seatGradeIndex)[seatNumber].getSeatSubscriber() == null) {
+                seatGradeList.get(seatGradeIndex)[seatNumber].setSeatSubscriber(seatSubscriber);
+                break;
             } else {
-                System.out.print(seatGradeList.get(seatGradeIndex)[i].getSeatSubscriber() + " ");
+                System.out.println("예약된 자리입니다. 다른 자리를 선택해 주십시오");
+                continue;
             }
         }
-        System.out.println();
-        
-        System.out.print("이름>> ");
-        seatSubscriber = scanner.nextLine();
-        
-        
-        System.out.println();
-        System.out.print("좌석번호>> ");
-        seatNumber = scanner.nextInt();
-        
-        
-        
-        seatGradeList.get(seatGradeIndex)[seatNumber].setSeatSubscriber(seatSubscriber);
-        
         
     }
     
@@ -72,7 +70,10 @@ public class Menu {
     
     
     public static void inquiry(Scanner scanner, ArrayList<Seat[]> seatGradeList) {
-        
+        for(int i = 0; i < seatGradeList.size(); i++){
+            showSeatList(i, seatGradeList);
+        }
+        System.out.println("<<조회를 완료했습니다.>>");
     }
     
     
@@ -84,5 +85,17 @@ public class Menu {
         
     }
     
+    
+    public static void showSeatList(int seatGradeIndex, ArrayList<Seat[]> seatGradeList) {
+        System.out.print(seatGradeList.get(seatGradeIndex)[0].getSeatGrade()+">> ");
+        for(int i = 0; i < seatGradeList.get(seatGradeIndex).length; i++){
+            if(seatGradeList.get(seatGradeIndex)[i].getSeatSubscriber() == null){
+                System.out.print("--- ");
+            } else {
+                System.out.print(seatGradeList.get(seatGradeIndex)[i].getSeatSubscriber() + " ");
+            }
+        }
+        System.out.println();
+    }
       
 }

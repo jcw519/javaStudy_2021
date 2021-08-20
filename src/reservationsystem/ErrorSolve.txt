@@ -1,0 +1,31 @@
+nextInt(), nextInt(), nextInt()...
+이거는 문제가 없다.
+
+nextLine(), nextLine(), nextLine()...
+이거 역시 문제가 없다.
+
+nxetInt(), nextLine(), next...
+여기서 nextInt() 바로 다음의 nextLine()은 씹혀버린다.
+
+ 
+
+사실 정확히 말하면 내 명령이 씹힌게 아니다.
+우선 다음을 머릿속에 집어넣고 아래를 보자.
+
+nextInt() -> System.in으로 입력 받은 시스템 값 중 Int값만 뽑아내 return 전까지 반환한다. (nextInt()를 사용하는 변수가 Int기 때문에 문자열이 들어오면 에러남.)
+next() -> System.in으로 입력 받은 시스템 값 중 연속된 문자열값만 뽑아내 공백 전까지 반환한다. ('20주년'으로 입력할 경우 20주년 모두 문자열로 들어옴.)
+nextLine() -> System.in으로 입력 받은 시스템 값 중 문자열 모두를 return을 포함해 반환한다.
+
+ 
+
+nextInt()에 50을 입력했다고 하자.
+그러면 Scanner(System.in)은 시스템으로부터 '5 + 0 + return' 이라는 3단계의 입력을 받는다.
+nextInt()는 return 전까지 입력된 Int값을 반환하기 때문에 '5 + 0'만 반환하고, return은 System.in에 그냥 남아있는다.
+
+그 다음 nextInt()를 또 호출하고 20을 입력하면
+Scanner(System.in)은 시스템으로부터 'return + 2 + 0 + return' 으로 앞에 남은 'return' 찌꺼기에 '2 + 0 + return' 3단계 입력까지 총 4단계 입력을 받는다.
+nextInt()는 return 전까지 입력된 Int값을 반환하기 때문에 '2 + 0'만 반환하고, return은 System.in에 그냥 남아있는다.
+
+하지만 다음에는 nextLine()이 호출되고 "Hello"를 입력하면
+Scanner(System.in)은 시스템으로부터 'return + H + e + l + l + o + return' 으로 앞에 남은 'return' 찌꺼기에 'H + e + l + l + o + return' 6단계 입력까지 총 7단계의 입력을 받는다.
+nextLine()은 return을 포함해 입력된 String값을 반환하기 때문에 'return'만 반환하고, 'H + e + l + l + o + return'은 System.in에 그냥 남아있는다
